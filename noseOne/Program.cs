@@ -1,35 +1,44 @@
-﻿string name;
-string correctName = "kalleanka";
-string answer;
-int code;
-int correctCode = 12345;
-int i;
+﻿string answering;
 
-if (6 >= 3 ) {
-    Console.WriteLine("Hello World!\n");
+int gameState = 1;
+int answer;
+int correct = Random.Shared.Next(1, 100);
+
+bool success;
+
+// Console.WriteLine($"{correct}");
+
+while (gameState == 1)
+{
+
+    Console.WriteLine("\nGissa den korrekta siffran (Mellan 1 - 100) ");
+    answering = Console.ReadLine();
+    success = int.TryParse(answering, out answer);
+
+    while (success == false)
+    {
+
+        Console.WriteLine("Skirv bara siffror, försök igen!");
+        answering = Console.ReadLine();
+        success = int.TryParse(answering, out answer);
+
+    }
+
+    if (answer > correct)
+    {
+        Console.WriteLine("Siffran är för hög");
+    }
+    else if (answer < correct)
+    {
+        Console.WriteLine("Siffran är för låg");
+    }
+    else if (answer == correct)
+    {
+        Console.WriteLine($"Korrekt siffra! Siffran var {correct}!");
+        gameState++;
+    }
+
 }
 
-Console.WriteLine("Skriv in ditt användarnamn: ");
-
-name = Console.ReadLine();
-
-Console.WriteLine("Skriv in kod: ");
-
-answer = Console.ReadLine();
-
-int.TryParse(answer, out code);
-
-if (name.ToLower() == correctName && code == correctCode) {
-    Console.WriteLine("Välkommen!");
-}
-else {
-    Console.WriteLine("Fel användarnamn eller kod\n");
-}
-
-for (i = 0; i < 32; i++) {
-    Console.WriteLine("Hello World!");
-}
-
-
-
+Console.WriteLine("Tryck på ENTER för att avsluta programet");
 Console.ReadLine();
